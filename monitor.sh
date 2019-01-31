@@ -5,7 +5,7 @@ RESTART=0
 MIN=20000
 DATE=`date`
 QUERY="select count(*) as c from listing2 where match('100')"
-IP=`/sbin/ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+IP=`/sbin/ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1`
 PORT="9309"
 
 ITEMS=`timeout 5s mysql -B -h $IP -P $PORT -u test -e "$QUERY" -A -r -N`
